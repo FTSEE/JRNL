@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from nlpUtils import sentimentScore, classifyPN
 
 app = Flask(__name__)
 
@@ -10,7 +11,10 @@ def initial():
 def confirm():
   if request.method=="POST":
     response = request.form.get("entryBox")
-    return(f"response:{response}")
+    # vauge classification of entry leaning.
+    userScore = sentimentScore(response)
+    userMood = classifyPN(userScore)
+    return(f"response:{response}. The NLP processor has detected that the user Response is: {userMood}")
   return("response not processed")
   
 
