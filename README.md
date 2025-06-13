@@ -9,15 +9,15 @@ JRNL is a web-based journaling application built with Flask that helps users ref
 - Modular backend for easy NLP model integration
 
 # Tech Stack:
-- Frontend: HTML, CSS (custom styling)
-- Backend: Python, Flask, Js
-- NLP: TextBlob (OpenAI API integration in progress)
+- Frontend: HTML, CSS (custom styling), Js
+- Backend: Python, Flask
+- NLP: TextBlob , Huggingface
 - Version Control: Git, GitHub
 
 # Getting Started!
 
 To run JRNL locally:
-- git clone https://github.com/YOUR_USERNAME/jrnl.git
+- git clone https://github.com/FTSEE/jrnl.git
 - cd jrnl
 - python -m venv venv
 # Windows
