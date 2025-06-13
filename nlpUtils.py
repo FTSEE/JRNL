@@ -1,22 +1,31 @@
 from textblob import TextBlob
 from textblob.classifiers import NaiveBayesClassifier
+from transformers import pipeline
+import re
 
-def sentimentScore(text):
-  sample = TextBlob(text)
-  score = sample.sentiment.polarity
-  return score
 
-def classifyPN(score):
-  if score < -0.2:
-      mood = 'negative'
-  elif -0.2 <= score <= 0.2:
-     mood = 'neutral'
-  elif score > 0.2:
-     mood = 'positive'
-  return mood
+# text (str) -> res (dict['label','score'])
+def classifyPN(text):
+  classifier = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", top_k=1)
+  res = classifier(text)
+  emotion = (res[0][0])['label']
+  confidence = (res[0][0])['score']
+  return emotion, confidence
+
+def splittingField(text):
+  sentences = re.split(r'[.!?;&]', text)
+  return sentences
+
+def weightedAvg(sentences):
+  pass
+
 
 #testcase
 if __name__ == "__main__":
-    score = sentimentScore("You're pretty alright dude")
-    mood = classifyPN(score)
-    print(f"SentScore={score}, feel={mood}")
+    # huggingface classifyPN test
+    text = "I think im getting worse"
+    emotion, confidence = classifyPN(text)
+    print(f'emotion:{emotion}, confidence:{confidence}')
+    
+
+
