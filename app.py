@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from nlpUtils import classifyPN, generateReflectionBB, promptCreator, splittingField, weightedAvg
 
 app = Flask(__name__)
@@ -11,18 +11,28 @@ def initial():
 def journal():
   return(render_template("index.j2"))
 
-@app.route('/confirm', methods=['GET', 'POST'])
+@app.route('/confirm', methods=['POST'])
 def confirm():
-  if request.method=="POST":
-    response = request.form.get("entryBox")
-    emotion, confidence = classifyPN(response)
-    prompt = promptCreator(response)
-    reflection = generateReflectionBB(prompt)
-    sentences = splittingField(response)
-    emotionDict = weightedAvg(sentences)
-    return(render_template(
-      "results.j2", response=response, mood=emotion, confidence=confidence, reflection=reflection, emotionDist = emotionDict))
-  return("response not processed")
+  response = request.form.get("entryBox")
+  return (render_template("results.j2", response=response))
+  
+@app.route('/analyze', methods=['POST'])
+def responseAnalyze():
+  data = request.get_json()
+  response = data.get("response", "") #Gets either the value from the response key being sent in the json body of the fetch, or returns an empty string
+
+  emotion, confidence = classifyPN(response)
+  prompt = promptCreator(response)
+  reflection = generateReflectionBB(prompt)
+  sentences = splittingField(response)
+  emotionDict = weightedAvg(sentences)
+
+  return jsonify({
+    "mood": emotion, 
+    "confidence": confidence, 
+    "reflection": reflection, 
+    "emotionDist": emotionDict
+  })
 
 if __name__ == "__main__":
   app.run('0.0.0.0', 8080, debug=True)

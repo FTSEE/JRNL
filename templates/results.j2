@@ -8,30 +8,47 @@
       Here are your Results:
     </h1>
     <p>response:<br>{{ response }}</p>
-    <p>We have detected that the tone of your text is:<br>{{ mood }}</p>
-    <p>Our confidence of this is:<br>{{ confidence }}</p>
-    <p>Here is a new question for you to try to answer, based off of what you wrote: <br>{{ reflection }}</p>
-    <p>{{ emotionDist }}</p>
-    <div id="myDiv"></div>
+    <p id="moodID"> analyzing... </p>
+    <p id="confidenceID"> analyzing... </p>
+    <p id="reflectionID"> analyzing... </p>
+    <div id="pieChart"></div>
   </div>
   <script>
-    //plotting graphic
-    const emotionData = {{ emotionDist | tojson | safe }};
-    const labels = Object.keys(emotionData).slice(1);
-    const values = Object.values(emotionData).slice(1);
-    
-    var data = [{
-      labels: labels,
-      values: values,
-      type: 'pie'
-    }];
+    //loading page for async functions
+    //creating a response string to send back for the fetch
+    const response = '{{ response | escape | tojson | safe}}';
 
-    var layout = {
-    height: 400,
-    width: 500
-    };
+    window.onload = async () => {
+      const res = await fetch('/analyze', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({response: response})
+      });
 
-    Plotly.newPlot('myDiv', data, layout);
+      const data = await res.json();
+      console.log(data);
 
+      document.getElementById("moodID").innerText = "Your detected mood is: " + data.mood;
+      document.getElementById("confidenceID").innerText = "Our confidence of your mood is: " + data.confidence;
+      document.getElementById("reflectionID").innerText = "Our AI has some Comments or Questions (Beta): " + data.reflection;
+
+      //plotting graphic
+      const emotionData = data.emotionDist;
+      const labels = Object.keys(emotionData).slice(1);
+      const values = Object.values(emotionData).slice(1);
+      
+      var chartData = [{
+        labels: labels,
+        values: values,
+        type: 'pie'
+      }];
+
+      var layout = {
+      height: 400,
+      width: 500
+      };
+
+      Plotly.newPlot('pieChart', chartData, layout);
+    }
   </script>
 </body>
