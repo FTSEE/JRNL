@@ -7,7 +7,7 @@ app = Flask(__name__)
 def initial():
   return(render_template("landing.j2"))
 
-@app.route('/journal', methods=['POST'])
+@app.route('/journal', methods=['GET','POST'])
 def journal():
   return(render_template("index.j2"))
 
@@ -22,6 +22,8 @@ def responseAnalyze():
   response = data.get("response", "") #Gets either the value from the response key being sent in the json body of the fetch, or returns an empty string
 
   emotion, confidence = classifyPN(response)
+  print(confidence)
+  confidence = round(confidence, 3)
   prompt = promptCreator(response)
   reflection = generateReflectionBB(prompt)
   sentences = splittingField(response)

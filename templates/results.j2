@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <head>
   <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="static/style.css">
 </head>
-<body>
-  <div>
-    <h1>
-      Here are your Results:
-    </h1>
-    <p>response:<br>{{ response }}</p>
-    <p id="moodID"> analyzing... </p>
-    <p id="confidenceID"> analyzing... </p>
-    <p id="reflectionID"> analyzing... </p>
-    <div id="pieChart"></div>
+<body class="blBg">
+  <header class="headBar">
+    <nav>
+      <a class="headerElement bodyText" href="/journal">JRNL</a>
+      <a class="headerElement bodyText" href="/journal">&#9993</a>
+    </nav>
+  </header>
+  <div class="evenHorizontal">
+    <div class="boundedGrey responseBox">
+      <p class="bodyText">Response:</p>
+      <div class="info">
+        <p class="smallText">{{ response | escape }}</p>
+      </div>
+      <form action="/journal", method="POST">
+        <button type="submit" class="gradient button">Go back to the Journal</button>
+      </form>
+    </div>
+    <div>
+      <div class="boxGrey">
+        <div class="info sideBySide">
+          <p id="moodID" class="smallText padded"> analyzing... </p>
+          <p id="confidenceID"class="smallText padded"> analyzing... </p>
+        </div>
+      </div>
+      <div class="twoElementNested">
+        <div class="boxGrey">
+          <p class="bodyText">AI Based Comments or Reflections (Beta):</p>
+          <div class="info">
+            <p id="reflectionID"class="smallText"> analyzing... </p>
+          </div>
+        </div>
+        <div class="boxGrey">
+          <p class="bodyText">Mood Distribution:</p>
+          <div id="pieChart"></div>
+        </div>
+      </div>
+    </div>
   </div>
   <script>
     //loading page for async functions
     //creating a response string to send back for the fetch
-    const response = '{{ response | escape | tojson | safe}}';
+    const response = '{{ response | tojson}}';
 
     window.onload = async () => {
       const res = await fetch('/analyze', {
@@ -28,9 +56,9 @@
       const data = await res.json();
       console.log(data);
 
-      document.getElementById("moodID").innerText = "Your detected mood is: " + data.mood;
-      document.getElementById("confidenceID").innerText = "Our confidence of your mood is: " + data.confidence;
-      document.getElementById("reflectionID").innerText = "Our AI has some Comments or Questions (Beta): " + data.reflection;
+      document.getElementById("moodID").innerText = "Detected Mood: " + data.mood;
+      document.getElementById("confidenceID").innerText = "Confidence: " + data.confidence;
+      document.getElementById("reflectionID").innerText = data.reflection;
 
       //plotting graphic
       const emotionData = data.emotionDist;

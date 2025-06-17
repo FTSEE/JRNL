@@ -54,7 +54,7 @@ def generateReflectionBB(text):
   return generated_text
 
 def promptCreator(text):
-  text = (f"This is my journal entry for today: {text}. I really want to ask myself")
+  text = (f"What does my mindfullness entry for today say: {text}")
   return text
 
 # text (str) -> res (dict['label','score'])

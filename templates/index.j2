@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <head>
-
+  <link rel="stylesheet" href="static/style.css">
 </head>
-<body>
-  <div>
-    <h1>
-      Write Your Journal Entry Here:
-    </h1>
-    <form action="/confirm" method="post">
-      <textarea id="entryBox" name="entryBox" class="inputStyle" rows="10" cols="50">Write Here!</textarea>
-      <input type="submit" value="Extract Mindfulness Insights">
-    </form>
+<body class="blBg">
+  <header class="headBar">
+    <nav>
+      <a class="headerElement bodyText" href="/journal">JRNL</a>
+      <a class="headerElement bodyText" href="/journal">&#9993</a>
+    </nav>
+  </header>
+  <div class="evenHorizontal">
+    <div class="boundedGrey">
+      <p class="bodyText">Start Writing Your Entry Here!</p>
+      <form action="/confirm" method="post">
+        <div>
+          <textarea id="entryBox" name="entryBox" class="inputStyle" rows="30" cols="50">Write Here!</textarea>
+        </div>
+        <div>
+          <input type="submit" value="Extract Mindfulness Insights" class="gradient button">
+        </div>
+      </form>
+    </div>
+    <div class="boundedGrey">
+      <p class="bodyText">How to Use:</p>
+      <div class="info">
+        <p class="smallText">JRNL is a free, open-source journaling insight tool designed to help you understand yourself better.</p>
+        <br>
+        <p class="smallText">We never store your data, nor do we use it for any training. Everything runs securely and privately in the moment you use it.</p>
+        <br>
+        <p class="smallText">Using trusted open-source NLP libraries like TextBlob and HuggingFace, JRNL analyzes the tone, emotional distribution, and underlying sentiment of your writing.</p>
+        <br>
+        <p class="smallText">Most people journal to vent or document—rarely do they pause to reflect. But true mindfulness is more than just writing. It’s noticing. It’s making sense of what you’re feeling and why.</p>
+        <br>
+        <p class="smallText">JRNL doesn't just let you write. It helps you see what your writing reveals. After you submit an entry, it highlights your emotional landscape and offers a gentle question to help guide your reflection deeper.</p>
+        <br>
+        <p class="smallText">Nothing you write is saved. But if a particular entry resonates, you can always save it locally. We're actively working on secure account features to make this easier in the future.</p>
+        <br>
+        <p class="smallText">JRNL is not just a journal. It’s a mirror for your mind.</p>
+      </div>
+    </div>
   </div>
 </body>
 <Script>

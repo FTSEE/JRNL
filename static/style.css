@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.blBg{
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.headBar {
+  position: sticky;
+  background-color: black;
+  top: 0;
+  min-height: 5vh;
+  width: 100%;
+  z-index: 1000; /* keeps it above other content */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-sizing: border-box; /* Ensures padding doesn't push it over the edge */
+  overflow-x: hidden;
+  border-bottom: 1px solid #767676;
+}
+
+.headerElement {
+  text-decoration: none;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.headerElement:hover {
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.twoPanelHorizontal{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  min-height: 90vh;
+  min-width: 90vw;
+  background-color: black;
+}
+
+.evenHorizontal{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+
+  min-height: 90vh;
+  min-width: 90vw;
+  background-color: black;
+}
+
+.twoElementNested{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: black;
+}
+
+.heroSection {
+  color: white;
+  font-family: 'Open Sans';
+  font-style: normal;
+  max-width: 30vw;
+  
+}
+
+.quote {
+  color: white;
+  max-width: 30vw;
+  font-family: 'Open Sans';
+}
+
+.boundedGrey {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 30px;
+  background-color: #0e0f10;
+  padding: 20px;
+  border: none;
+  border-radius: 25px;
+  min-height: 80vh;
+}
+
+.boxGrey {
+  margin: 30px;
+  background-color: #0e0f10;
+  padding: 20px;
+  border: none;
+  border-radius: 25px;
+}
+
+.inputStyle {
+  background-color: #292c32;
+  padding: 30px;
+  border-radius: 30px;
+  border: none;
+  color: #a6a6a6;
+}
+
+.inputStyle:on-Click {
+  border: none;
+}
+.responseBox {
+  max-width: 35vw;
+}
+.button {
+  margin-top: 5px;
+  padding: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: white;
+  font-size: 17px;
+  font-family: 'Open Sans';
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.padded{
+  padding: 20px;
+}
+  .button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(51, 52, 52, 0.2);
+}
+
+.gradient{
+  background: linear-gradient(90deg, #002554, #7b3c8d);
+}
+
+.box{
+  border-radius: 25px;
+  padding: 50px;
+  border: none;
+}
+
+.info {
+  background-color: #202227;
+  padding: 30px;
+  border-radius: 30px;
+  border: none;
+}
+
+.sideBySide {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.headerText{
+  font-size: 50px;
+  color: white;
+  font-family: 'Open Sans';
+}
+
+.bodyText {
+  font-size: 30px;
+  color: white;
+  font-family: 'Open Sans';
+}
+
+.smallText {
+  color: lightgray;
+  font-size: 17px;
+  font-family: 'Open Sans';
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #004aad, #cb6ce6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* for Firefox */
+  color: transparent;
+}
