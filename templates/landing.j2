@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <head>
-
+  <link rel="stylesheet" href="static/style.css">
 </head>
-<body>
-  <h1>JRNL</h1>
-  <br>
-  <h2>Let us help you acheive Mindfulness!</h2>
-  <br>
-  <form action="/journal" method="POST">
-    <button type="submit">Get Started</button>
-  </form>
+<body class="blBg">
+  <header class="headBar">
+    <nav>
+      <a class="headerElement bodyText" href="/journal">JRNL</a>
+      <a class="headerElement bodyText" href="/journal">&#9993</a>
+    </nav>
+  </header>
+  <div class="twoPanelHorizontal">
+    <div class="heroSection">
+      <h1 class="headerText">Extract <span class="gradient-text">Insights</span> From the Day to Day</h1>
+      <p class="bodyText">Mindfulness is Happiness. Everyone deserves that.<br><br>You write, JRNL analyzes, You grow.</p>
+      <br>
+      <form action="/journal" method="POST">
+        <button type="submit" class="gradient button">Get Started!</button>
+      </form>
+      <p class="smallText">*All open source and for free.</p>
+    </div>
+    <div class="quote">
+      <div class="gradient box">
+        <p class="bodyText">“Your journal will stand as a chronicle of your growth, your hopes, your fears, your dreams, your ambitions, your sorrows, your serendipities.”</p>
+        <p class="smallText">-Kathleen Adams</p>
+      </div>
+    </div>
+  </div>
 </body>
 <script>
 
